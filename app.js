@@ -69,6 +69,10 @@ function renderBoard() {
       const cell = document.createElement("button");
       cell.className = "cell";
       cell.type = "button";
+      cell.dataset.row = row;
+      cell.dataset.col = col;
+      cell.style.setProperty("--row", row);
+      cell.style.setProperty("--col", col);
       cell.setAttribute("aria-label", `${row + 1}행 ${col + 1}열`);
       if (starPoints.has(`${row},${col}`)) cell.classList.add("star");
       if (state.lastMove?.row === row && state.lastMove?.col === col) cell.classList.add("last");
@@ -83,6 +87,23 @@ function renderBoard() {
       els.board.appendChild(cell);
     }
   }
+  positionBoardCells();
+}
+
+function positionBoardCells() {
+  const width = els.board.clientWidth;
+  if (!width) return;
+  const pad = Number.parseFloat(getComputedStyle(els.board).getPropertyValue("--board-pad")) || 24;
+  const gap = (width - pad * 2) / 14;
+
+  els.board.querySelectorAll(".cell").forEach((cell) => {
+    const row = Number(cell.dataset.row);
+    const col = Number(cell.dataset.col);
+    cell.style.left = `${pad + gap * col}px`;
+    cell.style.top = `${pad + gap * row}px`;
+    cell.style.width = `${gap}px`;
+    cell.style.height = `${gap}px`;
+  });
 }
 
 function render() {
@@ -452,6 +473,7 @@ els.rematchBtn.addEventListener("click", rematch);
 els.leaveBtn.addEventListener("click", leave);
 els.chatForm.addEventListener("submit", sendChat);
 channel?.addEventListener("message", onMessage);
+window.addEventListener("resize", positionBoardCells);
 connectSocket();
 
 els.nickname.value = localStorage.getItem("omokName") || "";
