@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오목대전</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="side-panel">
+        <div class="brand">
+          <span class="brand-mark">五</span>
+          <div>
+            <h1>오목대전</h1>
+            <p>빠른 로그인으로 바로 매칭</p>
+          </div>
+        </div>
+
+        <div id="loginView" class="panel-section">
+          <label for="nickname">닉네임</label>
+          <div class="login-row">
+            <input id="nickname" maxlength="14" autocomplete="nickname" placeholder="예: 흑돌장인" />
+            <button id="loginBtn">입장</button>
+          </div>
+        </div>
+
+        <div id="lobbyView" class="panel-section hidden">
+          <div class="profile-row">
+            <div class="avatar" id="avatar">?</div>
+            <div>
+              <strong id="playerName">플레이어</strong>
+              <span id="playerId">대기 중</span>
+            </div>
+          </div>
+          <div class="room-tools">
+            <button id="createRoomBtn" class="primary">방 만들기</button>
+            <div class="room-code-row">
+              <input id="roomCodeInput" maxlength="8" placeholder="방 코드" />
+              <button id="joinRoomBtn">입장</button>
+            </div>
+            <div id="shareBox" class="share-box hidden">
+              <span>초대 링크</span>
+              <input id="shareLink" readonly />
+              <button id="copyRoomLinkBtn" class="secondary">복사</button>
+            </div>
+          </div>
+          <button id="matchBtn" class="primary">빠른 매칭</button>
+          <button id="botBtn" class="secondary">연습 상대와 대국</button>
+          <p id="queueText" class="queue-text">대기실에 입장하면 상대를 찾을 수 있어요.</p>
+        </div>
+
+        <div class="panel-section status-box">
+          <div>
+            <span>상태</span>
+            <strong id="gameStatus">로그인이 필요해요</strong>
+          </div>
+          <div>
+            <span>내 돌</span>
+            <strong id="myStone">-</strong>
+          </div>
+          <div>
+            <span>차례</span>
+            <strong id="turnText">-</strong>
+          </div>
+        </div>
+
+        <div class="panel-section controls">
+          <button id="rematchBtn" class="secondary" disabled>재대국</button>
+          <button id="leaveBtn" class="ghost" disabled>나가기</button>
+        </div>
+      </section>
+
+      <section class="game-area">
+        <div class="top-bar">
+          <div>
+            <span class="room-label">매치</span>
+            <h2 id="roomTitle">대기실</h2>
+          </div>
+          <div class="players">
+            <div class="player-card">
+              <span class="stone black"></span>
+              <strong id="blackName">흑</strong>
+            </div>
+            <div class="player-card">
+              <span class="stone white"></span>
+              <strong id="whiteName">백</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="board-wrap">
+          <div id="board" class="board" aria-label="오목판"></div>
+          <div id="overlay" class="board-overlay">
+            <strong>오목대전</strong>
+            <span>닉네임으로 입장하고 빠른 매칭을 눌러주세요.</span>
+          </div>
+        </div>
+
+        <div class="chat-panel">
+          <div id="chatLog" class="chat-log"></div>
+          <form id="chatForm" class="chat-form">
+            <input id="chatInput" maxlength="80" placeholder="메시지 입력" disabled />
+            <button disabled id="chatBtn">전송</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
