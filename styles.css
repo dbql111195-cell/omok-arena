@@ -393,6 +393,26 @@ h2 {
   display: none;
 }
 
+.win-effect-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.win-effect {
+  width: min(72%, 430px);
+  max-height: 76%;
+  object-fit: contain;
+  border-radius: 10px;
+  opacity: 0;
+  filter: drop-shadow(0 18px 34px rgba(40, 24, 10, 0.32));
+  animation: winFlash 2.55s ease-out forwards;
+}
+
 .bubble-layer {
   pointer-events: none;
   position: absolute;
@@ -533,6 +553,25 @@ h2 {
   }
 }
 
+@keyframes winFlash {
+  0% {
+    opacity: 0;
+    transform: scale(0.78) rotate(-2deg);
+  }
+  15% {
+    opacity: 0.82;
+    transform: scale(1.03) rotate(0deg);
+  }
+  68% {
+    opacity: 0.72;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.12) rotate(1.5deg);
+  }
+}
+
 @media (max-width: 860px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -587,6 +626,11 @@ h2 {
 
   .board-bubble span {
     font-size: 13px;
+  }
+
+  .win-effect {
+    width: 82%;
+    max-height: 72%;
   }
 
   .board {

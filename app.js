@@ -28,7 +28,6 @@ const els = {
   lobbyView: $("lobbyView"),
   nickname: $("nickname"),
   loginBtn: $("loginBtn"),
-  matchBtn: $("matchBtn"),
   botBtn: $("botBtn"),
   createRoomBtn: $("createRoomBtn"),
   roomCodeInput: $("roomCodeInput"),
@@ -50,6 +49,7 @@ const els = {
   whiteName: $("whiteName"),
   board: $("board"),
   bubbleLayer: $("bubbleLayer"),
+  winEffectLayer: $("winEffectLayer"),
   overlay: $("overlay"),
   chatLog: $("chatLog"),
   chatForm: $("chatForm"),
@@ -120,7 +120,6 @@ function render() {
   els.leaveBtn.disabled = !state.active && !state.inQueue && !state.gameOver;
   els.chatInput.disabled = !state.active;
   els.chatBtn.disabled = !state.active;
-  els.matchBtn.disabled = state.inQueue || state.active;
   els.botBtn.disabled = state.inQueue || state.active;
   els.createRoomBtn.disabled = state.inQueue || state.active;
   els.joinRoomBtn.disabled = state.inQueue || state.active;
@@ -143,7 +142,7 @@ function render() {
     ? state.waitingRoomCode
       ? `방 코드 ${state.waitingRoomCode} 를 친구에게 보내세요.`
       : "새 탭에서 다른 닉네임으로 입장하면 바로 연결돼요."
-    : "방 코드는 같은 주소에 접속한 사람끼리 연결됩니다.";
+    : "방을 만들고 초대 링크를 친구에게 보내세요.";
   els.shareLink.value = state.waitingRoomCode ? makeRoomLink(state.waitingRoomCode) : "";
   els.roomTitle.textContent = state.roomId ? `방 ${displayRoomCode(state.roomId)}` : state.waitingRoomCode ? `방 ${state.waitingRoomCode}` : "대기실";
   els.blackName.textContent = state.color === BLACK ? state.name || "흑" : state.opponent?.color === BLACK ? state.opponent.name : "흑";
@@ -167,15 +166,6 @@ function login() {
   state.name = name.slice(0, 14);
   localStorage.setItem("omokName", state.name);
   addChat("system", `${state.name} 님이 입장했어요.`);
-  render();
-}
-
-function startQueue() {
-  if (!state.name) return;
-  state.inQueue = true;
-  state.waitingRoomCode = "";
-  post({ type: "queue", id: state.id, name: state.name, at: Date.now() });
-  addChat("system", "상대를 찾는 중입니다.");
   render();
 }
 
@@ -254,8 +244,24 @@ function afterMove(winner, color) {
     state.active = false;
     state.gameOver = true;
     addChat("system", `${stoneName(color)} 승리!`);
+    showWinEffect();
   }
   render();
+}
+
+function showWinEffect() {
+  els.winEffectLayer.innerHTML = "";
+  const effects = ["assets/win-boom.png", "assets/win-cat-turn.png", "assets/win-science.png"];
+  const selectedEffect = effects[Math.floor(Math.random() * effects.length)];
+  const image = document.createElement("img");
+  image.src = selectedEffect;
+  image.alt = "";
+  image.className = "win-effect";
+  els.winEffectLayer.appendChild(image);
+
+  window.setTimeout(() => {
+    image.remove();
+  }, 2600);
 }
 
 function botMove() {
@@ -397,32 +403,6 @@ function onMessage(event) {
   }
   if (!msg || msg.from === state.id || msg.id === state.id) return;
 
-  if (msg.type === "queue" && state.inQueue && state.name) {
-    const roomId = `room-${Math.min(state.id, msg.id).slice(0, 6)}-${Math.max(state.id, msg.id).slice(0, 6)}`;
-    state.inQueue = false;
-    post({
-      type: "match",
-      roomId,
-      host: state.id,
-      guest: msg.id,
-      hostName: state.name,
-      guestName: msg.name,
-    });
-    beginGame({
-      roomId,
-      color: BLACK,
-      opponent: { id: msg.id, name: msg.name, color: WHITE },
-    });
-  }
-
-  if (msg.type === "match" && msg.guest === state.id) {
-    beginGame({
-      roomId: msg.roomId,
-      color: WHITE,
-      opponent: { id: msg.host, name: msg.hostName, color: BLACK },
-    });
-  }
-
   if (msg.type === "room-join" && state.inQueue && state.waitingRoomCode === msg.roomCode && state.name) {
     const roomId = `room-${msg.roomCode}`;
     post({
@@ -479,7 +459,6 @@ els.loginBtn.addEventListener("click", login);
 els.nickname.addEventListener("keydown", (event) => {
   if (event.key === "Enter") login();
 });
-els.matchBtn.addEventListener("click", startQueue);
 els.botBtn.addEventListener("click", startBotGame);
 els.createRoomBtn.addEventListener("click", createRoom);
 els.joinRoomBtn.addEventListener("click", joinRoom);
