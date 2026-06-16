@@ -243,6 +243,7 @@ h1 {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   gap: 14px;
+  min-width: 0;
   border-radius: 10px;
   padding: 18px;
 }
@@ -293,6 +294,8 @@ h2 {
   position: relative;
   display: grid;
   place-items: center;
+  width: 100%;
+  max-width: 100%;
   min-height: 440px;
   overflow: hidden;
   border-radius: 8px;
@@ -307,6 +310,7 @@ h2 {
   position: relative;
   display: block;
   width: min(76vh, 92vw, 720px);
+  max-width: 100%;
   aspect-ratio: 1;
   border-radius: 8px;
   background:
@@ -439,12 +443,14 @@ h2 {
 @media (max-width: 860px) {
   .app-shell {
     grid-template-columns: 1fr;
-    width: min(100vw - 18px, 680px);
-    margin: 9px auto;
+    width: min(100vw - 12px, 680px);
+    margin: 6px auto;
+    gap: 10px;
   }
 
   .side-panel {
     gap: 14px;
+    padding: 14px;
   }
 
   .room-code-row,
@@ -462,22 +468,73 @@ h2 {
     flex-direction: column;
   }
 
+  .game-area {
+    gap: 10px;
+    padding: 10px;
+  }
+
   .player-card {
     min-width: 0;
   }
 
   .board-wrap {
     min-height: auto;
-    padding: 10px;
+    padding: 6px;
+    overflow: visible;
   }
 
   .board {
     --board-pad: 18px;
     --board-gap: calc((100% - 36px) / 14);
-    width: min(94vw, 620px);
+    width: min(100%, calc(100vw - 44px), 620px);
     background:
       linear-gradient(#7d5522 1px, transparent 1px) var(--board-pad) var(--board-pad) / var(--board-gap) var(--board-gap),
       linear-gradient(90deg, #7d5522 1px, transparent 1px) var(--board-pad) var(--board-pad) / var(--board-gap) var(--board-gap),
       #ddb46d;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-shell {
+    width: 100vw;
+    margin: 0;
+  }
+
+  .side-panel,
+  .game-area {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
+
+  .brand-mark {
+    width: 44px;
+    height: 44px;
+    font-size: 23px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .login-row,
+  .controls,
+  .chat-form {
+    grid-template-columns: 1fr;
+  }
+
+  .board {
+    --board-pad: 16px;
+    --board-gap: calc((100% - 32px) / 14);
+    width: calc(100vw - 32px);
+  }
+
+  .piece {
+    width: 74%;
+    height: 74%;
   }
 }
