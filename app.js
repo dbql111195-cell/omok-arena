@@ -49,6 +49,7 @@ const els = {
   blackName: $("blackName"),
   whiteName: $("whiteName"),
   board: $("board"),
+  bubbleLayer: $("bubbleLayer"),
   overlay: $("overlay"),
   chatLog: $("chatLog"),
   chatForm: $("chatForm"),
@@ -346,6 +347,26 @@ function addChat(kind, text, mine = false) {
   item.textContent = kind === "system" ? text : `${kind}: ${text}`;
   els.chatLog.appendChild(item);
   els.chatLog.scrollLeft = els.chatLog.scrollWidth;
+
+  if (kind !== "system") {
+    showBoardBubble(kind, text, mine);
+  }
+}
+
+function showBoardBubble(name, text, mine = false) {
+  const bubble = document.createElement("div");
+  bubble.className = `board-bubble ${mine ? "me" : "opponent"}`;
+  bubble.innerHTML = `<strong></strong><span></span>`;
+  bubble.querySelector("strong").textContent = name;
+  bubble.querySelector("span").textContent = text;
+  els.bubbleLayer.appendChild(bubble);
+
+  window.setTimeout(() => {
+    bubble.classList.add("leaving");
+  }, 2300);
+  window.setTimeout(() => {
+    bubble.remove();
+  }, 2900);
 }
 
 function sendChat(event) {
