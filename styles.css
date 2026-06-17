@@ -16,7 +16,9 @@
 
 body {
   margin: 0;
+  width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
   color: var(--ink);
   font-family: "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
   background:
@@ -92,21 +94,7 @@ input:focus {
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-}
-
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  color: #fff;
-  background: var(--ink);
-  font-size: 27px;
-  font-weight: 800;
+  display: block;
 }
 
 h1,
@@ -128,6 +116,25 @@ h1 {
 .profile-row span {
   color: var(--muted);
   font-size: 13px;
+}
+
+.brand-kicker {
+  display: inline-grid;
+  gap: 2px;
+  max-width: 100%;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border: 1px solid rgba(30, 122, 104, 0.28);
+  border-radius: 8px;
+  color: var(--accent-dark);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  background: rgba(30, 122, 104, 0.1);
+}
+
+.brand-kicker span {
+  display: block;
 }
 
 .panel-section {
@@ -657,22 +664,19 @@ h2 {
     border-radius: 0;
   }
 
-  .brand-mark {
-    width: 40px;
-    height: 40px;
-    font-size: 21px;
-  }
-
   h1 {
     font-size: clamp(17px, 5vw, 20px);
   }
 
-  .brand {
-    gap: 9px;
-  }
-
   .brand p {
     font-size: 12px;
+  }
+
+  .brand-kicker {
+    width: fit-content;
+    max-width: 100%;
+    padding: 7px 9px;
+    font-size: 13px;
   }
 
   .board-overlay strong {
