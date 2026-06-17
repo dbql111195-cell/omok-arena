@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>미스테리 룸 | 미스터리 티셔츠 스토어</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="미스테리 룸 홈">
+        <span class="brand-mark">MR</span>
+        <span>미스테리 룸</span>
+      </a>
+      <nav class="nav-links" aria-label="주요 메뉴">
+        <a href="#shop">상품</a>
+        <a href="#fit">핏 가이드</a>
+        <a href="#journal">세계관</a>
+      </nav>
+      <button class="cart-button" type="button" aria-label="장바구니">
+        <span>장바구니</span>
+        <strong id="cartCount">0</strong>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">WORLD MYSTERY GRAPHIC TEES</p>
+          <h1>전세계 미스터리를 입는 방</h1>
+          <p>
+            피라미드, 나스카 라인, 스톤헨지, 버뮤다 삼각지대.
+            미스테리 룸은 설명되지 않은 이야기들을 어두운 그래픽 티셔츠로 만듭니다.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#shop">상품 보기</a>
+            <a class="secondary-action" href="#fit">사이즈 확인</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="대표 티셔츠 이미지">
+          <img src="assets/tee-bermuda.png" alt="버뮤다 삼각지대 그래픽 티셔츠">
+          <div class="floating-note">
+            <strong>첫 드롭</strong>
+            <span>세계 4대 미스터리</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="value-strip" aria-label="스토어 장점">
+        <div>
+          <strong>다크 그래픽</strong>
+          <span>흑백 대비와 은은한 포인트 컬러</span>
+        </div>
+        <div>
+          <strong>세계 미스터리</strong>
+          <span>지역별 전설과 미해결 이야기</span>
+        </div>
+        <div>
+          <strong>한정 드롭</strong>
+          <span>시즌마다 다른 사건과 상징</span>
+        </div>
+      </section>
+
+      <section class="section-heading" id="shop">
+        <p class="eyebrow">SHOP</p>
+        <h2>첫 번째 조사 파일</h2>
+      </section>
+
+      <section class="product-grid" aria-label="티셔츠 상품 목록">
+        <article class="product-card" data-product="기자의 피라미드 티" data-price="39000">
+          <a class="product-media" href="#" aria-label="기자의 피라미드 티 상세 보기">
+            <img src="assets/tee-pyramid.png" alt="기자의 피라미드 티">
+            <span class="badge">BEST</span>
+          </a>
+          <div class="product-info">
+            <div>
+              <h3>기자의 피라미드 티</h3>
+              <p>별자리와 피라미드 라인을 겹친 다크 그래픽.</p>
+            </div>
+            <strong>39,000원</strong>
+          </div>
+          <div class="product-options" aria-label="색상 옵션">
+            <span class="swatch ink"></span>
+            <span class="swatch bone"></span>
+            <span class="swatch blood"></span>
+          </div>
+          <button class="add-cart" type="button">담기</button>
+        </article>
+
+        <article class="product-card" data-product="버뮤다 삼각지대 티" data-price="42000">
+          <a class="product-media" href="#" aria-label="버뮤다 삼각지대 티 상세 보기">
+            <img src="assets/tee-bermuda.png" alt="버뮤다 삼각지대 티">
+            <span class="badge new">NEW</span>
+          </a>
+          <div class="product-info">
+            <div>
+              <h3>버뮤다 삼각지대 티</h3>
+              <p>사라진 항로와 레이더 노이즈를 삼각형으로 표현.</p>
+            </div>
+            <strong>42,000원</strong>
+          </div>
+          <div class="product-options" aria-label="색상 옵션">
+            <span class="swatch midnight"></span>
+            <span class="swatch ink"></span>
+            <span class="swatch signal"></span>
+          </div>
+          <button class="add-cart" type="button">담기</button>
+        </article>
+
+        <article class="product-card" data-product="나스카 라인 티" data-price="41000">
+          <a class="product-media" href="#" aria-label="나스카 라인 티 상세 보기">
+            <img src="assets/tee-nazca.png" alt="나스카 라인 티">
+          </a>
+          <div class="product-info">
+            <div>
+              <h3>나스카 라인 티</h3>
+              <p>사막 위 거대한 선을 티셔츠 중앙에 얇게 각인.</p>
+            </div>
+            <strong>41,000원</strong>
+          </div>
+          <div class="product-options" aria-label="색상 옵션">
+            <span class="swatch ink"></span>
+            <span class="swatch sand"></span>
+            <span class="swatch bone"></span>
+          </div>
+          <button class="add-cart" type="button">담기</button>
+        </article>
+
+        <article class="product-card" data-product="스톤헨지 이클립스 티" data-price="43000">
+          <a class="product-media" href="#" aria-label="스톤헨지 이클립스 티 상세 보기">
+            <img src="assets/tee-stonehenge.png" alt="스톤헨지 이클립스 티">
+          </a>
+          <div class="product-info">
+            <div>
+              <h3>스톤헨지 이클립스 티</h3>
+              <p>거석 배열과 일식 이미지를 묵직하게 배치.</p>
+            </div>
+            <strong>43,000원</strong>
+          </div>
+          <div class="product-options" aria-label="색상 옵션">
+            <span class="swatch midnight"></span>
+            <span class="swatch ash"></span>
+            <span class="swatch blood"></span>
+          </div>
+          <button class="add-cart" type="button">담기</button>
+        </article>
+      </section>
+
+      <section class="fit-section" id="fit">
+        <div>
+          <p class="eyebrow">FIT GUIDE</p>
+          <h2>어두운 그래픽이 살아나는 핏</h2>
+          <p>정사이즈는 단정하게, 한 사이즈 업은 그래픽이 더 크게 보이는 스트리트핏으로 연출됩니다.</p>
+        </div>
+        <div class="fit-table" role="table" aria-label="사이즈 표">
+          <div role="row">
+            <strong role="columnheader">사이즈</strong>
+            <strong role="columnheader">총장</strong>
+            <strong role="columnheader">가슴</strong>
+            <strong role="columnheader">추천</strong>
+          </div>
+          <div role="row">
+            <span>M</span><span>70</span><span>54</span><span>95-100</span>
+          </div>
+          <div role="row">
+            <span>L</span><span>73</span><span>57</span><span>100-105</span>
+          </div>
+          <div role="row">
+            <span>XL</span><span>76</span><span>60</span><span>105-110</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="journal" id="journal">
+        <div class="journal-image">
+          <img src="assets/tee-pyramid.png" alt="피라미드 그래픽 티셔츠">
+        </div>
+        <div>
+          <p class="eyebrow">ROOM NOTE</p>
+          <h2>각 티셔츠는 하나의 조사 기록</h2>
+          <p>
+            미스테리 룸의 그래픽은 단순한 장식이 아니라 사건의 좌표, 상징, 소문을 조합한 기록입니다.
+            첫 드롭은 고대 유적과 실종 전설을 중심으로 구성했습니다.
+          </p>
+          <a class="text-link" href="#shop">추천 상품 보러가기</a>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-panel" id="cartPanel" aria-live="polite">
+      <div>
+        <strong>장바구니</strong>
+        <button type="button" id="closeCart" aria-label="장바구니 닫기">×</button>
+      </div>
+      <ul id="cartItems"></ul>
+      <p id="emptyCart">담긴 상품이 없습니다.</p>
+      <a class="checkout" href="#">주문하기</a>
+    </aside>
+
+    <footer class="site-footer">
+      <strong>미스테리 룸</strong>
+      <span>고객센터 10:00-17:00 · hello@mystery-room.example</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
